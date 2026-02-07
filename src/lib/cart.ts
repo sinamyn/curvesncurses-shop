@@ -13,7 +13,7 @@ export const CartLineSchema = z.object({
 });
 export type CartLine = z.infer<typeof CartLineSchema>;
 
-export function setCart(lines: CartLine[]) {
+CartLine
   cookies().set("cart", JSON.stringify(lines), { httpOnly: true, sameSite: "lax", path: "/" });
 }
 
