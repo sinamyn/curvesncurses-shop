@@ -23,7 +23,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
     <main>
       <div className="grid cols-2">
         <div className="card">
-          <Image src={product.images[0] ?? "https://placehold.co/900x900/png"} alt={product.name} width={1000} height={1000} />
+     
         </div>
 
         <div className="card">
