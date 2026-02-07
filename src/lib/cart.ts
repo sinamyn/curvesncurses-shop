@@ -13,7 +13,7 @@ export const CartLineSchema = z.object({
 });
 export type CartLine = z.infer<typeof CartLineSchema>;
 
-export function getCart(): CartLine[] {
+export async function setCart(lines: CartLine[]) {
   const raw = cookies().get("cart")?.value;
   if (!raw) return [];
   try {
@@ -28,7 +28,7 @@ export function setCart(lines: CartLine[]) {
 }
 
 export async function addToCart(line: CartLine) {
-  const cart = getCart();
+ const cart = await getCart();
   const idx = cart.findIndex(c => c.productId === line.productId);
   if (idx >= 0) cart[idx] = { ...cart[idx], qty: cart[idx].qty + line.qty };
   else cart.push(line);
