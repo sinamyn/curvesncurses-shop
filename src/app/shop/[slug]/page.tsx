@@ -146,8 +146,6 @@ export default async function ProductPage({
 
           <div style={{ marginTop: 12 }}>
             <Link href="/shop">← Back to shop</Link>
-          </div>
-        </div>
       </div>
     </main>
   );
