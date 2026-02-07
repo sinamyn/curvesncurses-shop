@@ -36,7 +36,7 @@ export default async function ProductPage({
   const avg =
     reviews.length > 0
       ? (
-          reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+          reviews.reduce((sum: number, r: { rating: number}) => sum + r.rating, 0) / reviews.length
         ).toFixed(1)
       : null;
 
