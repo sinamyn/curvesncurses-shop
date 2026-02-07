@@ -28,7 +28,7 @@ export default async function Home() {
         <div className="card">
           <h2 style={{marginTop:0}}>Featured</h2>
           <div className="grid cols-3" style={{gridTemplateColumns:"repeat(2,1fr)"}}>
-            {best.slice(0,4).map(p => (
+            {best.slice(0,4).map((p: any) => (
               <Link key={p.id} className="product-card" href={`/shop/${p.slug}`}>
                 <Image src={p.images[0] ?? "https://placehold.co/900x900/png"} alt={p.name} width={450} height={450} />
                 <div style={{marginTop:8}}><b style={{fontSize:13}}>{p.name}</b><br/><small>${(p.priceCents/100).toFixed(2)}</small></div>
@@ -44,7 +44,7 @@ export default async function Home() {
         <div className="card">
           <h2>Best Sellers</h2>
           <div className="grid cols-3">
-            {best.slice(0,3).map(p => (
+            {best.slice(0,3).map((p: any) => (
               <Link key={p.id} className="product-card" href={`/shop/${p.slug}`}>
                 <Image src={p.images[0] ?? "https://placehold.co/900x900/png"} alt={p.name} width={600} height={600} />
                 <div style={{marginTop:8}}><b>{p.name}</b><br/><small>${(p.priceCents/100).toFixed(2)}</small></div>
