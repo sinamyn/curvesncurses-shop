@@ -9,8 +9,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) return <main><div className="card">Not found.</div></main>;
 
   const reviews = await prisma.review.findMany({ where: { productId: product.id }, orderBy: { createdAt: "desc" }, take: 50 });
- const avg =
-  reviews.length > 0
+ const avg =reviews.length 
     ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
     : null;
   async function add(formData: FormData) {
