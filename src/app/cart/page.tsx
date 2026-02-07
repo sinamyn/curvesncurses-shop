@@ -5,13 +5,13 @@ import { calcShippingCents } from "@/lib/shipping";
 
 export default async function CartPage() {
   const lines = await getCart();
-  const priced = lines.map(l => {
+  const priced = lines.map((l: any) => {
     const pct = bulkDiscountPercent(l.qty);
     const unit = applyPercent(l.priceCents, pct);
     const lineTotal = unit * l.qty;
     return { ...l, pct, unit, lineTotal };
   });
-  const subtotal = priced.reduce((a,l)=>a+l.lineTotal,0);
+  const subtotal = priced.reduce((a: number,l: any)=>a+l.lineTotal,0);
   const ship = calcShippingCents(priced as any, subtotal);
   const total = subtotal + ship.shippingCents;
 
