@@ -43,17 +43,15 @@ export default async function ProductPage({
   async function add(formData: FormData) {
     "use server";
     const qty = Math.max(1, Number(formData.get("qty") ?? 1));
-    await addToCart({
-      productId: product.id,
-      slug: product.slug,
-      name: product.name,
-      category: product.category,
-      priceCents: product.priceCents,
-      qty,
-      weightOz: Number(product.weightOz ?? 0),
-      image: (product.images?.[0] as string | undefined) ?? null,
-    });
-  }
+  await addToCart({
+  productId: product.id,
+  slug: product.slug,
+  name: product.name,
+  category: product.category,
+  priceCents: product.priceCents,
+  weightOz: Number(product.weightOz ?? 0),
+  qty,
+});
 
   const bulkExamples = [10, 25, 50].map((q) => ({
     qty: q,
