@@ -59,10 +59,9 @@ export async function updateQty(productId: string, qty: number): Promise<void> {
   await setCart(cart);
 }
 
-export async function removeFromCart(productId: string): Promise<void> {
+export async function removeFromCart(productId: string) {
   const cart = await getCart();
-  const next = cart.filter((c) => c.productId !== productId);
-  await setCart(next);
+  await setCart(cart.filter((c) => c.productId !== productId));
 }
 export async function updateQty(productId: string, qty: number) {
   const cart = await getCart();
