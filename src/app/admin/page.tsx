@@ -41,7 +41,7 @@ export default async function Admin() {
           </div>
           <div className="card" style={{background:"#fff"}}>
             <h2>Recent Orders</h2>
-            {orders.map(o => (
+            {orders.map((o: any) => (
               <div key={o.id} style={{padding:"8px 0", borderBottom:"1px solid var(--border)"}}>
                 <b>{o.id}</b><br/>
                 <small>{o.status} • {o.email} • ${(o.totalCents/100).toFixed(2)}</small>
