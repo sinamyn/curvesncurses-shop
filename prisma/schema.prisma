@@ -1,0 +1,97 @@
+generator client { provider = "prisma-client-js" }
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductType { REGULAR BUNDLE }
+enum InventoryMode { MADE_TO_ORDER LIMITED }
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  wishlists    WishlistItem[]
+  orders       Order[]
+}
+
+model Product {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  name          String
+  description   String
+  category      String
+  type          ProductType   @default(REGULAR)
+  priceCents    Int
+  weightOz      Float         @default(0)
+  images        String[]
+  inventoryMode InventoryMode @default(MADE_TO_ORDER)
+  stockQty      Int?
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  reviews       Review[]
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  createdAt       DateTime    @default(now())
+  email           String
+  status          String      @default("PENDING")
+  subtotalCents   Int
+  shippingCents   Int
+  totalCents      Int
+  currency        String      @default("usd")
+  stripeSessionId String?     @unique
+  shippingName    String?
+  shippingAddress String?
+  items           OrderItem[]
+  userId          String?
+  user            User?       @relation(fields: [userId], references: [id])
+  reviewTokens    ReviewToken[]
+}
+
+model OrderItem {
+  id             String @id @default(cuid())
+  orderId        String
+  productId      String
+  name           String
+  unitPriceCents Int
+  qty            Int
+  lineTotalCents Int
+  productSlug    String
+  order          Order  @relation(fields: [orderId], references: [id])
+}
+
+model ReviewToken {
+  id        String   @id @default(cuid())
+  orderId   String
+  email     String
+  token     String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  order     Order    @relation(fields: [orderId], references: [id])
+}
+
+model Review {
+  id         String   @id @default(cuid())
+  productId  String
+  name       String
+  rating     Int
+  title      String?
+  body       String
+  photoUrl   String?
+  createdAt  DateTime @default(now())
+  isVerified Boolean  @default(false)
+  product    Product  @relation(fields: [productId], references: [id])
+}
+
+model WishlistItem {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+}
