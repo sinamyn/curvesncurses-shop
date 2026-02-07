@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   const name = String(body.name ?? "").trim();
   if (!email || !name) return NextResponse.json({ error: "Missing name/email" }, { status: 400 });
 
-  const cart = getCart();
+  const cart = await getCart();
   if (!cart.length) return NextResponse.json({ error: "Cart empty" }, { status: 400 });
 
   const priced = cart.map(l => {
