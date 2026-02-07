@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { getCart } from "@/lib/cart";
 
 export default async function CheckoutPage() {
-  const cart = getCart();
+  const cart = await getCart();
   if (cart.length === 0) redirect("/cart");
 
   async function create(formData: FormData) {
