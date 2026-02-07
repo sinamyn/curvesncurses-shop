@@ -13,16 +13,6 @@ export const CartLineSchema = z.object({
 });
 export type CartLine = z.infer<typeof CartLineSchema>;
 
-export async function setCart(lines: CartLine[]) {
-  const raw = cookies().get("cart")?.value;
-  if (!raw) return [];
-  try {
-    const parsed = JSON.parse(raw);
-    const arr = z.array(CartLineSchema).safeParse(parsed);
-    return arr.success ? arr.data : [];
-  } catch { return []; }
-}
-
 export function setCart(lines: CartLine[]) {
   cookies().set("cart", JSON.stringify(lines), { httpOnly: true, sameSite: "lax", path: "/" });
 }
