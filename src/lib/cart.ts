@@ -45,3 +45,24 @@ export async function addToCart(line: CartLine): Promise<void> {
 
   await setCart(cart);
 }
+export async function updateQty(productId: string, qty: number): Promise<void> {
+  const cart = await getCart();
+  const idx = cart.findIndex((c) => c.productId === productId);
+  if (idx < 0) return;
+
+  if (qty <= 0) {
+    cart.splice(idx, 1);
+  } else {
+    cart[idx] = { ...cart[idx], qty };
+  }
+
+  await setCart(cart);
+}
+
+export async function removeFromCart(productId: string): Promise<void> {
+  const cart = await getCart();
+  const next = cart.filter((c) => c.productId !== productId);
+  await setCart(next);
+}
+Sent
+Write to
