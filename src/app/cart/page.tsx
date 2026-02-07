@@ -4,7 +4,7 @@ import { bulkDiscountPercent, applyPercent } from "@/lib/discounts";
 import { calcShippingCents } from "@/lib/shipping";
 
 export default async function CartPage() {
-  const lines = getCart();
+  const lines = await getCart();
   const priced = lines.map(l => {
     const pct = bulkDiscountPercent(l.qty);
     const unit = applyPercent(l.priceCents, pct);
