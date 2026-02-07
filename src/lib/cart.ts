@@ -65,7 +65,4 @@ export async function removeFromCart(productId: string) {
 }
 
 
-export async function removeFromCart(productId: string) {
-  const cart = await getCart();
-  await setCart(cart.filter(c => c.productId !== productId));
-}
+
