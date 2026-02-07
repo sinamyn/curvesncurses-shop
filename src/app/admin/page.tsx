@@ -32,7 +32,7 @@ export default async function Admin() {
         <div className="grid cols-2">
           <div className="card" style={{background:"#fff"}}>
             <h2>Recent Products</h2>
-            {products.map(p => (
+            {products.map((p: any) => (
               <div key={p.id} style={{padding:"8px 0", borderBottom:"1px solid var(--border)"}}>
                 <b>{p.name}</b><br/>
                 <small>{p.category} • ${(p.priceCents/100).toFixed(2)} • {p.inventoryMode}{p.inventoryMode==="LIMITED" ? ` (${p.stockQty ?? 0})` : ""}</small>
