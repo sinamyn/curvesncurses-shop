@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <small>Verified buyers can leave photo reviews after purchase.</small>
           <div className="grid" style={{marginTop:10}}>
             {reviews.length === 0 && <div className="card">No reviews yet. Be the first 😈</div>}
-            {reviews.map(r => (
+            {reviews.map((r: { id: string; name; string; rating: number }) => (
               <div key={r.id} className="card">
                 <div style={{display:"flex", justifyContent:"space-between", gap:10}}>
                   <b>{r.name}</b>
