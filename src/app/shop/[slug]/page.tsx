@@ -24,10 +24,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
   return (
     <main>
       <div className="grid cols-2">
-        <div className="card">
-     
-        </div>
-
+      <div className="card">
+  <Image
+    src={product.images?.[0] ?? "https://placehold.co/900x900/png"}
+    alt={product.name}
+    width={1000}
+    height={1000}
+  />
+</div>
         <div className="card">
           <span className="badge">{product.category}</span>
           <h1 style={{marginTop:10}}>{product.name}</h1>
