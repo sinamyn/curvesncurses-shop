@@ -43,14 +43,24 @@ export default async function Account() {
 
           <div className="hr" />
           <h2>Order history</h2>
-          {orders.length === 0 ? <div className="card" style={{background:"#fff"}}>No orders yet.</div> : (
-            <div className="grid">{orders.map(o => (
-              <div key={o.id} className="card" style={{background:"#fff"}}>
-                <b>{o.id}</b><br/><small>{new Date(o.createdAt).toLocaleString()} • {o.status} • ${(o.totalCents/100).toFixed(2)}</small>
-              </div>
-            ))}</div>
-          )}
-
+      {orders.length === 0 ? (
+  <div className="card" style={{ background: "#fff" }}>
+    No orders yet.
+  </div>
+) : (
+  <div className="grid">
+    {orders.map((o: any) => (
+      <div key={o.id} className="card" style={{ background: "#fff" }}>
+        <b>{o.id}</b>
+        <br />
+        <small>
+          {new Date(o.createdAt).toLocaleString()} • {o.status} • $
+          {(o.totalCents / 100).toFixed(2)}
+        </small>
+      </div>
+    ))}
+  </div>
+)}
           <div className="hr" />
           <Link className="btn" href="/wishlist">Wishlist</Link>
           <Link className="btn" href="/admin" style={{marginLeft:10}}>Admin</Link>
