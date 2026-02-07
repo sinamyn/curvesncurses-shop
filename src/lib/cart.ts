@@ -64,5 +64,16 @@ export async function removeFromCart(productId: string): Promise<void> {
   const next = cart.filter((c) => c.productId !== productId);
   await setCart(next);
 }
-Sent
-Write to
+export async function updateQty(productId: string, qty: number) {
+  const cart = await getCart();
+  const idx = cart.findIndex(c => c.productId === productId);
+  if (idx >= 0) {
+    cart[idx].qty = qty;
+    await setCart(cart);
+  }
+}
+
+export async function removeFromCart(productId: string) {
+  const cart = await getCart();
+  await setCart(cart.filter(c => c.productId !== productId));
+}
