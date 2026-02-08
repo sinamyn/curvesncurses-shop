@@ -59,7 +59,7 @@ export default async function ProductPage({
   }));
 
   const imgSrc =
-    (product.images?.[0] as string | undefined) ??
+    (product.images?.[0] ??
     "https://placehold.co/900x900/png";
 
   return (
