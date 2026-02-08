@@ -58,12 +58,15 @@ export default async function ProductPage({
     pct: bulkDiscountPercent(q),
   }));
 
-  const imgSrc = (product.images && product.images[0]) || "https://placehold.co/900x900.png";
-    return (
-   </main>
+  const imgSrc =
+  (product.images && product.images[0]) ||
+  "https://placehold.co/900x900.png";
+
+return (
+  <main>
     <div className="grid cols-2">
-        <div className="card">
-          <Image
+      <div className="card">         
+        <Image
             src={imgSrc}
             alt={product.name}
             width={1000}
