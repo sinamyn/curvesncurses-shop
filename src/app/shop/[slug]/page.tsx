@@ -61,9 +61,9 @@ export default async function ProductPage({
   const imgSrc =
   (product.images && product.images[0]) ||
   "https://placehold.co/900x900.png";
-
-return (
-  <main>
+    return (
+      <main>
+   
     <div className="grid cols-2">
       <div className="card">         
         <Image
@@ -149,4 +149,5 @@ return (
       </div>
     </main>
   );
-}
+      }
+      
